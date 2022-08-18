@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Account\AccountController;
 use App\Http\Controllers\Account\UpdateaccountController;
+use App\Http\Controllers\Admin\AdminagentController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\UpdateagentController;
 use App\Http\Controllers\Auth\AdminloginController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Lead\LeadsController;
@@ -45,6 +47,12 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/user/{id}/edit', [UsersController::class, 'show']);
     Route::post('/users', [UsersController::class, 'store']);
     Route::put('/updateuser/{user}', [UpdateuserController::class, 'update']);
+
+    Route::get('/agents', [AdminagentController::class, 'index']);
+    Route::get('/agents/create', [AdminagentController::class, 'create']);
+    Route::get('/agent/{id}/edit', [AdminagentController::class, 'show']);
+    Route::post('/agents', [AdminagentController::class, 'store']);
+    Route::put('/updateagent/{agent}', [UpdateagentController::class, 'update']);
     
     Route::get('/admins', [AdminController::class, 'index'])->name('adminsettings');
 });
