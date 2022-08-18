@@ -22,16 +22,16 @@ class AccountController extends Controller
                 ->with('user')
                 ->paginate(10)
                 ->withQueryString()
-                ->through(fn($user) => [
-                    'id' => $user->id,
-                    'name' => $user->name,
-                    'slug' => $user->slug,
+                ->through(fn($acc) => [
+                    'id' => $acc->id,
+                    'name' => $acc->name,
+                    'slug' => $acc->slug,
                     'user' => [
-                        'name' => $user->user->name
+                        'name' => $acc->user->name
                     ],
                     'can' => [
                         'edit' => true
-                        // 'edit' => Auth::user()->can('edit', $user)
+                        // 'edit' => Auth::user()->can('edit', $acc)
                     ]
                 ]),
             'filters' => Request::only(['search']),

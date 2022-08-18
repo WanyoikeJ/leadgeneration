@@ -5,6 +5,8 @@ use App\Http\Controllers\Account\UpdateaccountController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\AdminloginController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Lead\LeadsController;
+use App\Http\Controllers\Lead\UpdateleadsController;
 use App\Http\Controllers\Users\UpdateuserController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -16,7 +18,7 @@ Route::post('logout', [LoginController::class, 'destroy'])->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::inertia('/', 'Home');
-    Route::inertia('/leads', 'Leads');
+    // Route::inertia('/leads', 'Leads');
 
     Route::get('/users', [UsersController::class, 'index']);
     Route::get('/users/create', [UsersController::class, 'create']);
@@ -29,6 +31,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/account/create', [AccountController::class, 'create']);
     Route::get('/account/{account}/edit', [AccountController::class, 'show']);
     Route::put('/updateaccount/{account}', [UpdateaccountController::class, 'update']);
+
+    Route::get('/leads', [LeadsController::class, 'index']);
+    Route::post('/leads', [LeadsController::class, 'store']);
+    Route::get('/lead/create', [LeadsController::class, 'create']);
+    Route::get('/lead/{lead}/edit', [LeadsController::class, 'show']);
+    Route::put('/lead/{lead}', [UpdateleadsController::class, 'update']);
 });
 
 

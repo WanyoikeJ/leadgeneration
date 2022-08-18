@@ -754,6 +754,12 @@ select {
 .max-w-lg {
   max-width: 32rem;
 }
+.max-w-6xl {
+  max-width: 72rem;
+}
+.max-w-7xl {
+  max-width: 80rem;
+}
 .flex-none {
   flex: none;
 }
@@ -912,6 +918,10 @@ select {
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+}
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 .text-center {
   text-align: center;

@@ -7,11 +7,11 @@
                 </NavLink>
             </li>
 
-            <li>
+            <!-- <li>
                 <NavLink href="/users" :active="$page.component === 'Users'">
                 Users
                 </NavLink>
-            </li>
+            </li> -->
 
             <li>
                 <NavLink href="/accounts" :active="$page.component === 'Accounts'">
