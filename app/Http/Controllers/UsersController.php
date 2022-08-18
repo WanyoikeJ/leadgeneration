@@ -13,7 +13,7 @@ class UsersController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Users/Index', [
+        return Inertia::render('Admin/Users/Index', [
             'users' => User::query()
                 ->when(Request::input('search'), function ($query, $search) {
                     $query->where('name', 'like', "%{$search}%");
@@ -39,7 +39,7 @@ class UsersController extends Controller
 
     public function show($id)
     {
-        return Inertia::render('Users/Edit', [
+        return Inertia::render('Admin/Users/Edit', [
             'user' => User::findOrFail(intval($id)),
             'can' => [
                 'createUser' => Auth::user()->can('create', User::class)
@@ -51,6 +51,10 @@ class UsersController extends Controller
     {
         $user->name = $request->name;
         $user->email = $request->email;
+
+        if($request->filled('password')){
+            $user->password = bcrypt($request->password);
+        }
         $user->save();
 
         return Redirect::back()->with('success', 'Team Member was updated successfully.');
@@ -58,7 +62,7 @@ class UsersController extends Controller
 
     public function create()
     {
-        return Inertia::render('Users/Create');
+        return Inertia::render('Admin/Users/Create');
     }
 
     public function store()

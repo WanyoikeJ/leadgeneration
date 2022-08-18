@@ -2,6 +2,7 @@ import { createApp, h } from "vue";
 import { createInertiaApp, Link, Head } from "@inertiajs/inertia-vue3";
 import { InertiaProgress } from "@inertiajs/progress";
 import Layout from "./Shared/Layout";
+import Adminlauout from "./Shared/Adminlauout";
 
 createInertiaApp({
   resolve: name => {
@@ -9,7 +10,9 @@ createInertiaApp({
 
     if (page.layout === undefined) {
       page.layout = Layout;
-    }
+    }else if (page.layout === 'admin') {
+      page.layout = Adminlauout;
+    } else {}
 
     return page;
   },

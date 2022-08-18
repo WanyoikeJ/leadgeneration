@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\User;
+use App\Models\Admin\Admin;
 use Auth;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -10,12 +10,12 @@ class UserPolicy
 {
     use HandlesAuthorization;
 
-    public function create(User $user)
+    public function create(Admin $admin)
     {
-        return $user->email === 'lee20@example.org';
+        return $admin->email === 'lee20@example.org';
     }
 
-    public function edit(User $user, User $model)
+    public function edit(Admin $admin, Admin $model)
     {
         return (bool) mt_rand(0, 1); // 👀
     }

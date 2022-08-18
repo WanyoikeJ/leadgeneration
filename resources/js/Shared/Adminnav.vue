@@ -1,16 +1,12 @@
 <template>
     <div class="ml-10 flex items-baseline space-x-4">
-        <NavLink href="/" :active="$page.component === 'Home'">
-            Home
+        <NavLink href="/users" :active="$page.component === 'Users'">
+            Users
         </NavLink>
 
-        <NavLink href="/accounts" :active="$page.component === 'Accounts/Index'">
-            Accounts
+        <NavLink href="/agents" :active="$page.component === 'Agents'">
+            Agents
         </NavLink>
-
-        <NavLink href="/leads" :active="$page.component === 'Leads/Index'">
-            Leads
-        </NavLink>        
     </div>
 </template>
 

@@ -20,12 +20,6 @@ Route::middleware('auth')->group(function () {
     Route::inertia('/', 'Home');
     // Route::inertia('/leads', 'Leads');
 
-    Route::get('/users', [UsersController::class, 'index']);
-    Route::get('/users/create', [UsersController::class, 'create']);
-    Route::get('/user/{id}/edit', [UsersController::class, 'show']);
-    Route::post('/users', [UsersController::class, 'store']);
-    Route::put('/updateuser/{user}', [UpdateuserController::class, 'update']);
-
     Route::get('/accounts', [AccountController::class, 'index']);
     Route::post('/accounts', [AccountController::class, 'store']);
     Route::get('/account/create', [AccountController::class, 'create']);
@@ -46,5 +40,11 @@ Route::post('adminlogin', [AdminloginController::class, 'store']);
 Route::post('adminlogout', [AdminloginController::class, 'destroy'])->middleware('auth:admin');
 
 Route::middleware('auth:admin')->group(function () {
+    Route::get('/users', [UsersController::class, 'index']);
+    Route::get('/users/create', [UsersController::class, 'create']);
+    Route::get('/user/{id}/edit', [UsersController::class, 'show']);
+    Route::post('/users', [UsersController::class, 'store']);
+    Route::put('/updateuser/{user}', [UpdateuserController::class, 'update']);
+    
     Route::get('/admins', [AdminController::class, 'index'])->name('adminsettings');
 });
