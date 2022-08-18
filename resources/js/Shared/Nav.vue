@@ -1,38 +1,44 @@
 <template>
-  <nav>
-    <ul class="flex space-x-6">
-      <li>
-        <NavLink href="/" :active="$page.component === 'Home'">
-          Home
-        </NavLink>
-      </li>
+    <nav>
+        <ul class="flex space-x-6">
+            <li>
+                <NavLink href="/" :active="$page.component === 'Home'">
+                Home
+                </NavLink>
+            </li>
 
-      <li>
-        <NavLink href="/users" :active="$page.component === 'Users'">
-          Users
-        </NavLink>
-      </li>
+            <li>
+                <NavLink href="/users" :active="$page.component === 'Users'">
+                Users
+                </NavLink>
+            </li>
 
-      <li>
-        <NavLink href="/settings" :active="$page.component === 'Settings'">
-          Settings
-        </NavLink>
-      </li>
+            <li>
+                <NavLink href="/accounts" :active="$page.component === 'Accounts'">
+                    Accounts
+                </NavLink>
+            </li>
 
-      <li>
-        <template v-if="role == 'admin'">
-            <NavLink href="/adminlogout" method="post" as="button">
-                Log Out
-            </NavLink>
-        </template>
-        <template v-else>
-            <NavLink href="/logout" method="post" as="button">
-                Log Out
-            </NavLink>
-        </template>
-      </li>
-    </ul>
-  </nav>
+            <li>
+                <NavLink href="/leads" :active="$page.component === 'Leads'">
+                    Leads
+                </NavLink>
+            </li>
+
+            <li>
+                <template v-if="role == 'admin'">
+                    <NavLink href="/adminlogout" method="post" as="button">
+                        Log Out
+                    </NavLink>
+                </template>
+                <template v-else>
+                    <NavLink href="/logout" method="post" as="button">
+                        Log Out
+                    </NavLink>
+                </template>
+            </li>
+        </ul>
+    </nav>
 </template>
 
 <script>

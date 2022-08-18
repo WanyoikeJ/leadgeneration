@@ -1,29 +1,34 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Account;
 
-use App\Models\User;
-use Auth;
+use App\Http\Controllers\Controller;
+use App\Models\Account\Account;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 // use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Request;
 
-class UsersController extends Controller
+class AccountController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Users/Index', [
-            'users' => User::query()
+        return Inertia::render('Accounts/Index', [
+            'accounts' => Account::query()
                 ->when(Request::input('search'), function ($query, $search) {
                     $query->where('name', 'like', "%{$search}%");
                 })
+                ->with('user')
                 ->paginate(10)
                 ->withQueryString()
                 ->through(fn($user) => [
                     'id' => $user->id,
                     'name' => $user->name,
-                    'email' => $user->email,
+                    'slug' => $user->slug,
+                    'user' => [
+                        'name' => $user->user->name
+                    ],
                     'can' => [
                         'edit' => true
                         // 'edit' => Auth::user()->can('edit', $user)
@@ -37,28 +42,16 @@ class UsersController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function show(Account $account)
     {
-        return Inertia::render('Users/Edit', [
-            'user' => User::findOrFail(intval($id)),
-            'can' => [
-                'createUser' => Auth::user()->can('create', User::class)
-            ]
+        return Inertia::render('Accounts/Edit', [
+            'acount' => $account
         ]);
-    }
-
-    public function update(Request $request, User $user)
-    {
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->save();
-
-        return Redirect::back()->with('success', 'Team Member was updated successfully.');
     }
 
     public function create()
     {
-        return Inertia::render('Users/Create');
+        return Inertia::render('Accounts/Create');
     }
 
     public function store()
@@ -66,11 +59,19 @@ class UsersController extends Controller
         $attributes = Request::validate([
             'name' => 'required',
             'email' => ['required', 'email'],
-            'password' => 'required',
         ]);
 
-        User::create($attributes);
+        Account::create($attributes);
 
-        return redirect('/users');
+        return redirect('/accounts');
+    }
+
+    public function update(Request $request, Account $account)
+    {
+        $account->name = $request->name;
+        $account->email = $request->email;
+        $account->save();
+
+        return Redirect::back()->with('success', 'Account was updated successfully.');
     }
 }

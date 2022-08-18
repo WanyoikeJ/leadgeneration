@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Account\AccountController;
+use App\Http\Controllers\Account\UpdateaccountController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\AdminloginController;
 use App\Http\Controllers\Auth\LoginController;
@@ -14,13 +16,19 @@ Route::post('logout', [LoginController::class, 'destroy'])->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::inertia('/', 'Home');
-    Route::inertia('/settings', 'Settings');
+    Route::inertia('/leads', 'Leads');
 
     Route::get('/users', [UsersController::class, 'index']);
     Route::get('/users/create', [UsersController::class, 'create']);
     Route::get('/user/{id}/edit', [UsersController::class, 'show']);
     Route::post('/users', [UsersController::class, 'store']);
     Route::put('/updateuser/{user}', [UpdateuserController::class, 'update']);
+
+    Route::get('/accounts', [AccountController::class, 'index']);
+    Route::post('/accounts', [AccountController::class, 'store']);
+    Route::get('/account/create', [AccountController::class, 'create']);
+    Route::get('/account/{account}/edit', [AccountController::class, 'show']);
+    Route::put('/updateaccount/{account}', [UpdateaccountController::class, 'update']);
 });
 
 
