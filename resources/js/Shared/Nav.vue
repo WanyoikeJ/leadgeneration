@@ -1,30 +1,25 @@
 <template>
-    <nav>
+    <div class="ml-10 flex items-baseline space-x-4">
+        <NavLink href="/" :active="$page.component === 'Home'">
+            Home
+        </NavLink>
+
+        <NavLink href="/accounts" :active="$page.component === 'Accounts/Index'">
+            Accounts
+        </NavLink>
+
+        <NavLink href="/leads" :active="$page.component === 'Leads/Index'">
+            Leads
+        </NavLink>
+
+        <!-- <NavLink href="/users" :active="$page.component === 'Users'">
+            Users
+        </NavLink> -->
+        
+    </div>
+    
+    <!-- <nav>
         <ul class="flex space-x-6">
-            <li>
-                <NavLink href="/" :active="$page.component === 'Home'">
-                Home
-                </NavLink>
-            </li>
-
-            <!-- <li>
-                <NavLink href="/users" :active="$page.component === 'Users'">
-                Users
-                </NavLink>
-            </li> -->
-
-            <li>
-                <NavLink href="/accounts" :active="$page.component === 'Accounts'">
-                    Accounts
-                </NavLink>
-            </li>
-
-            <li>
-                <NavLink href="/leads" :active="$page.component === 'Leads'">
-                    Leads
-                </NavLink>
-            </li>
-
             <li>
                 <template v-if="role == 'admin'">
                     <NavLink href="/adminlogout" method="post" as="button">
@@ -38,7 +33,7 @@
                 </template>
             </li>
         </ul>
-    </nav>
+    </nav> -->
 </template>
 
 <script>
