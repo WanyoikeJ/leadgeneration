@@ -5,6 +5,9 @@ use App\Http\Controllers\Account\UpdateaccountController;
 use App\Http\Controllers\Admin\AdminagentController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UpdateagentController;
+use App\Http\Controllers\Agent\AgentassignmentController;
+use App\Http\Controllers\Agent\AgentatasksController;
+use App\Http\Controllers\Agent\UpdateagenttaskController;
 use App\Http\Controllers\Auth\AdminloginController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Lead\LeadsController;
@@ -17,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('login', [LoginController::class, 'create'])->name('login');
 Route::post('login', [LoginController::class, 'store']);
 Route::post('logout', [LoginController::class, 'destroy'])->middleware('auth');
+
+Route::get('tasks', [AgentassignmentController::class, 'index']);
 
 Route::middleware('auth')->group(function () {
     Route::inertia('/', 'Home');
@@ -53,6 +58,13 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/agent/{id}/edit', [AdminagentController::class, 'show']);
     Route::post('/agents', [AdminagentController::class, 'store']);
     Route::put('/updateagent/{agent}', [UpdateagentController::class, 'update']);
+
+    // agenttasks
+    Route::get('agentstasks', [AgentatasksController::class, 'index']);
+    Route::get('agentstasks/create', [AgentatasksController::class, 'create']);
+    Route::post('/agentstasks', [AgentatasksController::class, 'store']);
+    Route::get('/agentstask/{agentassignment}/edit', [AgentatasksController::class, 'show']);
+    Route::put('/agentstask/{agentassignment}', [UpdateagenttaskController::class, 'update']);
     
     Route::get('/admins', [AdminController::class, 'index'])->name('adminsettings');
 });

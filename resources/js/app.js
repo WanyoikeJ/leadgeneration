@@ -3,6 +3,7 @@ import { createInertiaApp, Link, Head } from "@inertiajs/inertia-vue3";
 import { InertiaProgress } from "@inertiajs/progress";
 import Layout from "./Shared/Layout";
 import Adminlauout from "./Shared/Adminlauout";
+import Guestlayout from "./Shared/Guestlayout";
 
 createInertiaApp({
   resolve: name => {
@@ -12,6 +13,8 @@ createInertiaApp({
       page.layout = Layout;
     }else if (page.layout === 'admin') {
       page.layout = Adminlauout;
+    }else if (page.layout === 'guest') {
+      page.layout = Guestlayout;
     } else {}
 
     return page;

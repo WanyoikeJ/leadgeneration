@@ -44,7 +44,7 @@
 
 <script>
 export default {
-  layout: null,
+  layout: 'guest',
 };
 </script>
 
