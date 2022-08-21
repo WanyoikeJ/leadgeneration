@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Lead\LeadRequest;
 use App\Http\Resources\Account\AccountResource;
 use App\Models\Account\Account;
+use App\Models\Agent\Agentassignment;
 use App\Models\Lead\Lead;
 use Request;
 // use Illuminate\Http\Request;
@@ -72,6 +73,12 @@ class LeadsController extends Controller
     public function store(LeadRequest $request)
     {
         $lead = Lead::create($request->only('accounts_id', 'description', 'stage', 'source', 'timeline', 'startdate'));
+
+        Agentassignment::create([
+            'user_id' => request()->user()->id,
+            'lead_id' => $lead->id,
+            'description' => $request->description
+        ]);
 
         return redirect('/leads');
     }

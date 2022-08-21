@@ -9,6 +9,7 @@ use App\Http\Resources\Lead\LeadsResource;
 use App\Models\Agent\Agent;
 use App\Models\Agent\Agentassignment;
 use App\Models\Lead\Lead;
+use App\Models\User;
 use Request;
 use Inertia\Inertia;
 
@@ -39,7 +40,7 @@ class AgentatasksController extends Controller
                         'account' =>  $agent->lead->account->name,
                     ],
                     'admin' => [
-                        'name' => $agent->admin->name
+                        'name' => ($agent->admin != null) ? $agent->admin->name :null
                     ],
                     'can' => [
                         'edit' => true
@@ -56,10 +57,10 @@ class AgentatasksController extends Controller
 
     public function create()
     {
-        $agents = Agent::where('status', true)->get();
+        $users = User::get();
         $leads = Lead::with('account')->where('stage','!=','Job closed')->get();
         return Inertia::render('Admin/Agenttasks/Create', [
-            'agents' => AgentResource::collection($agents),
+            'users' => AgentResource::collection($users),
             'leads' => LeadsResource::collection($leads),
         ]);
     }
@@ -67,11 +68,11 @@ class AgentatasksController extends Controller
     public function show(Agentassignment $agentassignment)
     {
         $agentassignment->load(['agent','lead.account','admin']);
-        $agents = Agent::where('status', true)->get();
+        $users = User::get();
         $leads = Lead::with('account')->where('stage','!=','Job closed')->get();
         return Inertia::render('Admin/Agenttasks/Edit', [
             'task' => $agentassignment,
-            'agents' => AgentResource::collection($agents),
+            'users' => AgentResource::collection($users),
             'leads' => LeadsResource::collection($leads),
             'status' => ['Completed' ,'Ongoing']
         ]);
@@ -79,7 +80,7 @@ class AgentatasksController extends Controller
 
     public function store(AgentatasksRequest $request)
     {
-        $lead = Agentassignment::create($request->only('agent_id', 'lead_id', 'description'));
+        $lead = Agentassignment::create($request->only('user_id', 'lead_id', 'description'));
 
         return redirect('/agentstasks');
     }

@@ -15,9 +15,9 @@ class CreateAgentassignmentsTable extends Migration
     {
         Schema::create('agentassignments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('agent_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->foreignId('lead_id')->constrained();
-            $table->foreignId('admin_id')->constrained();
+            $table->foreignId('admin_id')->nullable()->constrained();
             $table->text('description')->nullable();
             $table->boolean('status')->default(true);
             $table->timestamps();

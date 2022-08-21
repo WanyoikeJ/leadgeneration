@@ -17,11 +17,11 @@
                         <div class="col-span-6 sm:col-span-3">
                             <label for="Agent" class="block text-sm font-medium text-gray-700">Agent</label>
                             <select id="Agent" @change="updateagentid($event)" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                <option v-for="agt in agents.data" :key="agt.id" :value="agt.id" :selected= "agt.id == task.agent_id">
+                                <option v-for="agt in users.data" :key="agt.id" :value="agt.id" :selected= "agt.id == task.user_id">
                                     {{agt.name}}
                                 </option>
                             </select>
-                            <!-- <div v-if="form.errors.agent_id" v-text="form.errors.agent_id" class="text-red-500 text-xs mt-1"></div> -->
+                            <!-- <div v-if="form.errors.user_id" v-text="form.errors.user_id" class="text-red-500 text-xs mt-1"></div> -->
                         </div>
 
                         <div class="col-span-6 sm:col-span-3">
@@ -64,12 +64,12 @@
 <script>
 export default{
     layout: 'admin',
-    props: ['task','agents','leads','status'],
+    props: ['task','users','leads','status'],
     data(){
         return{
             agentname: this.task.agent.name,
             form:{
-                agent_id: this.task.agent_id,
+                user_id: this.task.user_id,
                 lead_id: this.task.lead_id,
                 description: this.task.description,
                 status: null,
@@ -79,7 +79,7 @@ export default{
     },
     methods:{
         updateagentid(event){
-            this.form.agent_id = event.target.value
+            this.form.user_id = event.target.value
         },
         updatealeadid(event){
             this.form.lead_id = event.target.value

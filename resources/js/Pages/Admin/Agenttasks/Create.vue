@@ -17,7 +17,7 @@
                             <label for="first-name" class="block text-sm font-medium text-gray-700">Agent</label>
                             <select id="companyname" v-model="form.agent_id" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <option value="">Select agent</option>
-                                <option v-for="agt in agents.data" :key="agt.id" :value="agt.id">{{agt.name}}</option>
+                                <option v-for="agt in users.data" :key="agt.id" :value="agt.id">{{agt.name}}</option>
                             </select>
                             <div v-if="form.errors.agent_id" v-text="form.errors.agent_id" class="text-red-500 text-xs mt-1"></div>
                         </div>
@@ -62,7 +62,7 @@
 import { useForm } from "@inertiajs/inertia-vue3";
 
     let props = defineProps({
-        agents: Array,
+        users: Array,
         leads: Array
     });
 

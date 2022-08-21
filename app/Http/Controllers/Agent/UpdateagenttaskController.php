@@ -11,7 +11,7 @@ class UpdateagenttaskController extends Controller
 {
     public function update(Request $request, Agentassignment $agentassignment)
     {
-        $agentassignment->agent_id = $request->agent_id;
+        $agentassignment->user_id = $request->user_id;
         $agentassignment->lead_id = $request->lead_id;
         $agentassignment->description = $request->description;
         // status

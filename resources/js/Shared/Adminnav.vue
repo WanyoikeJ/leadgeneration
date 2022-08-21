@@ -4,9 +4,9 @@
             Users
         </NavLink>
 
-        <NavLink href="/agents" :active="$page.component === 'Admin/Agents/Index'">
+        <!-- <NavLink href="/agents" :active="$page.component === 'Admin/Agents/Index'">
             Agents
-        </NavLink>
+        </NavLink> -->
 
         <NavLink href="/agentstasks" :active="$page.component === 'Admin/Agenttasks/Index'">
             Agents tasks

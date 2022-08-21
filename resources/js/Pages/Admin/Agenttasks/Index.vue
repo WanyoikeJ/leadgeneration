@@ -32,7 +32,7 @@
                                                         <img src="https://tailwindui.com/img/avatar-3.jpg" alt="" class="h-10 w-10 flex-none rounded-full">
                                                         <div class="ml-4 flex-auto">
                                                             <div class="font-medium">{{ agent.agent.name }}</div>
-                                                            <div class="mt-1 text-slate-700 text-xs">Asigned By: {{agent.admin.name}}</div>
+                                                            <div v-if="agent.admin.name != null" class="mt-1 text-slate-700 text-xs">Asigned By: {{agent.admin.name}}</div>
                                                         </div>
                                                     </div>
                                                 </td>

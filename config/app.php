@@ -14,6 +14,10 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    
+    'adminpass' => env('ADMIN_PS', 'admin2022'),
+
+    'userpass' => env('USER_PS', 'belva2022'),
 
     /*
     |--------------------------------------------------------------------------
