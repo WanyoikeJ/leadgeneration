@@ -24,6 +24,38 @@
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                                     <table class="min-w-full divide-y divide-gray-200">
+                                        <thead>
+                                            <td>
+                                                <div class="px-6 py-4 whitespace-nowrap font-bold text-base">
+                                                    Name
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="px-6 py-4 whitespace-nowrap font-bold text-base">
+                                                    Source
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="px-6 py-4 whitespace-nowrap font-bold text-base">
+                                                    Timelines
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="px-6 py-4 whitespace-nowrap font-bold text-base">
+                                                    Amount
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="px-6 py-4 whitespace-nowrap font-bold text-base">
+                                                    Client
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="px-6 py-4 whitespace-nowrap font-bold text-base text-right">
+                                                    Action
+                                                </div>
+                                            </td>
+                                        </thead>
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             <tr v-for="ld in leads.data" :key="ld.id">
 
@@ -46,6 +78,12 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="flex items-center">
                                                         <div class="font-normal">{{ ld.timeline }}</div>
+                                                    </div>
+                                                </td>
+
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="flex items-center">
+                                                        <div class="font-normal">{{ ld.amount }}</div>
                                                     </div>
                                                 </td>
 

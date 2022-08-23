@@ -19,6 +19,7 @@ class Lead extends Model
         'source',
         'timeline',
         'startdate',
+        'amount'
     ];
 
     public static function boot()

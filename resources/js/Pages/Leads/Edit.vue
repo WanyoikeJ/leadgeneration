@@ -49,6 +49,12 @@
                         <!-- <div v-if="form.errors.startdate" v-text="form.errors.startdate" class="text-red-500 text-sm mt-1"></div> -->
                     </div>
 
+                    <div class="col-span-6 sm:col-span-3">
+                        <label for="amount" class="block text-sm font-medium text-gray-700">Amount</label>
+                        <input v-model="form.amount" type="number" id="amount" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+                    
+
                 </div>
             </div>
 
@@ -74,6 +80,7 @@ export default{
                 source: this.lead.source,
                 timeline: this.lead.timeline,
                 startdate: this.lead.startdate,
+                amount: this.lead.amount,
                 id: this.lead.id
             }
         }

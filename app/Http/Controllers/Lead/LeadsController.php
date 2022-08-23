@@ -30,6 +30,7 @@ class LeadsController extends Controller
                     'stage' => $lead->stage,
                     'source' => $lead->source,
                     'timeline' => $lead->timeline,
+                    'amount' => $lead->amount,
                     'startdate' => $lead->startdate,
                     'user' => [
                         'name' => $lead->user->name
@@ -89,6 +90,7 @@ class LeadsController extends Controller
         $lead->source = $request->source;
         $lead->timeline = $request->timeline;
         $lead->startdate = $request->startdate;
+        $lead->amount = $request->amount;
         $lead->description = $request->description;
         $lead->save();
 

@@ -37,6 +37,7 @@ class AgentatasksController extends Controller
                         'timeline' =>  $agent->lead->timeline,
                         'startdate' =>  $agent->lead->startdate,
                         'description' =>  $agent->lead->description,
+                        'amount' =>  $agent->lead->amount,
                         'account' =>  $agent->lead->account->name,
                     ],
                     'admin' => [

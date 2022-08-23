@@ -21,8 +21,8 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
 
-        if (Auth::check()) {
-            Auth::logout();
+        if (Auth::guard('admin')->check()) {
+            Auth::guard('admin')->logout();
         }
 
         if (Auth::attempt($credentials)) {
@@ -38,7 +38,9 @@ class LoginController extends Controller
 
     public function destroy()
     {
-        Auth::logout();
+        if (Auth::guard('web')->check()) {
+            Auth::guard('web')->logout();
+        }
 
         return redirect()->route('login');
     }

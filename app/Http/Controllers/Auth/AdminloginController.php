@@ -21,8 +21,8 @@ class AdminloginController extends Controller
             'password' => ['required'],
         ]);
 
-        if (Auth::check()) {
-            Auth::logout();
+        if (Auth::guard('web')->check()) {
+            Auth::guard('web')->logout();
         }
 
         if (Auth::guard('admin')->attempt($credentials)) {
@@ -38,7 +38,7 @@ class AdminloginController extends Controller
 
     public function destroy()
     {
-        Auth::logout();
+        Auth::guard('admin')->logout();
 
         return redirect()->route('adminlogin');
     }

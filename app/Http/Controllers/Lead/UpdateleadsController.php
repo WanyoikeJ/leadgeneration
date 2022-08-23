@@ -19,6 +19,7 @@ class UpdateleadsController extends Controller
         $lead->source = $request->source;
         $lead->timeline = $request->timeline;
         $lead->startdate = $request->startdate;
+        $lead->amount = $request->amount;
         $lead->description = $request->description;
         $lead->save();
 
